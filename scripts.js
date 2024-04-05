@@ -34,4 +34,11 @@ function operate(operator, firstNumber, SecondNumber) {
     add(firstNumber, SecondNumber);
 }
 
+//display screen
+let buttons = document.querySelector(".buttonContainer");
+buttons.addEventListener("click", function displayScreen() {
+    let displayPanel = document.querySelector(".display");
+    let buttonValue = event.target.textContent;
+    displayPanel.textContent = buttonValue;
+});
 

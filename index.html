@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./scripts.js"> </script>
 </head>
 <body>
     <div class="container">
-        <div class="display"> 
+        <div class="display" id="displayPanel"> 
             
         </div>
 
@@ -19,17 +18,37 @@
                 <img class = "backspace_img" src="./images/key.png" alt="backspace_img"> 
             </button>
         </div>
-
-        <div class="Mathoperator">
-            <button class="add"> + </button>
-            <button class="subtract"> - </button>
-            <button class="multiply"> × </button>
-            <button class="divide"> ÷ </button>
+        <div class="buttonContainer"> <!-- added this for testing of event delegation -->
+        <div class="buttonsrow">
+            <button class="buttonStyle"> + </button>
+            <button class="buttonStyle"> - </button>
+            <button class="buttonStyle"> × </button>
+            <button class="buttonStyle"> ÷ </button>
         </div>
 
-        <div class="numbers">
+        <div class="buttonsrow">
+            <button class="buttonStyle" id="one"> 1 </button>
+            <button class="buttonStyle"> 2 </button>
+            <button class="buttonStyle"> 3 </button>
+            <button class="buttonStyle"> 4 </button>
+        </div>
 
+        <div class="buttonsrow">
+            <button class="buttonStyle"> 5 </button>
+            <button class="buttonStyle"> 6 </button>
+            <button class="buttonStyle"> 7 </button>
+            <button class="buttonStyle"> 8 </button>
+        </div>
+
+        <div class="buttonsrow">
+            <button class="buttonStyle"> 9 </button>
+            <button class="buttonStyle"> 0 </button>
+            <button class="buttonStyle"> . </button>
+            <button class="buttonStyle equalButton"> = </button>
+        </div>
         </div>
     </div>
+
+    <script src="./scripts.js"> </script>
 </body>
 </html>
