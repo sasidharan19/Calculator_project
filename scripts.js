@@ -2,6 +2,8 @@
 
 let firstNumber = 2;
 let SecondNumber = 4;
+let operator;
+
 
 //add
 function add(firstNumber, SecondNumber) {
@@ -27,7 +29,9 @@ function divide(firstNumber, SecondNumber) {
     console.log(divisionResult);
 }
 
-add(firstNumber, SecondNumber);
-subtract(firstNumber, SecondNumber);
-multiply(firstNumber, SecondNumber);
-divide(firstNumber, SecondNumber);
+//operate
+function operate(operator, firstNumber, SecondNumber) {
+    add(firstNumber, SecondNumber);
+}
+
+
