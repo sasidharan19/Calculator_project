@@ -35,10 +35,25 @@ function operate(operator, firstNumber, SecondNumber) {
 }
 
 //display screen
+let displayValue;
 let buttons = document.querySelector(".buttonContainer");
+
 buttons.addEventListener("click", function displayScreen() {
     let displayPanel = document.querySelector(".display");
     let buttonValue = event.target.textContent;
-    displayPanel.textContent = buttonValue;
+    displayValue = buttonValue;
+
+    buttons.addEventListener("click", function displayScreen() {
+        displayPanel = document.querySelector(".display");
+        buttonValueNew = event.target.textContent;
+        displayValue = buttonValue + buttonValueNew;
+        displayPanel.textContent = displayValue;
+    })
 });
+
+
+
+
+
+
 
