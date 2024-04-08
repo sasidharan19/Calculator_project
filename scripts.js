@@ -30,31 +30,45 @@ function operate(operator, firstNumber, SecondNumber) {
 }
 
 //display screen
+//first Value
 const clickedValues = [];
 let buttons = document.querySelectorAll(".buttonContainer");
 let displayPanel = document.querySelector(".display");
+let equalTo = document.querySelector(".equalButton");
 
 buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        clickedValues.push(event.target.textContent);
-        displayPanel.textContent = clickedValues.join("");
+    button.addEventListener("click", (event) => {
+        let excludedElement = document.querySelector(".excludeMe")
+        console.log(excludedElement.textContent);
+        if(event.target !== excludedElement) {
+            clickedValues.push(event.target.textContent);
+            displayPanel.textContent = clickedValues.join("");
+        }
     });
 });
 
+//operator and second value
 let operator = document.querySelector(".operatorButtons");
-let displayInsidePanel = document.querySelector(".displayInsideContainer");
-let buttonsSecondValue = document.querySelector("#buttonContainerForSecondValue");
+let displayFirstPanel = document.querySelector(".displayFirstContainer");
+let buttonsSecondValue = document.querySelectorAll("#buttonContainerForSecondValue");
+
 operator.addEventListener("click", () =>{
     let selectedOperator = event.target.textContent;
     let displayForOperator = clickedValues.join("") + selectedOperator;
-    displayInsidePanel.textContent = displayForOperator;
+    displayFirstPanel.textContent = displayForOperator;
 
     clickedValues.splice(0, clickedValues.length);
     buttonsSecondValue.forEach(button => {
-        button.addEventListener("click", () => {
-            clickedValues.push(event.target.textContent);
-            displayPanel.textContent = clickedValues.join("");
+        button.addEventListener("click", (event) => {
+            let excludedElement = document.querySelector(".excludeMe")
+            if(event.target !== excludedElement) {
+                clickedValues.push(event.target.textContent);
+                displayPanel.textContent = clickedValues.join("");
+            }
         });
     });
-});
 
+    equalTo.addEventListener("click", () => {
+        displayFirstPanel.textContent = displayForOperator + clickedValues.join("") + event.target.textContent;
+    })
+});
