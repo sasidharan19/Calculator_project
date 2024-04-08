@@ -40,4 +40,21 @@ buttons.forEach(button => {
         displayPanel.textContent = clickedValues.join("");
     });
 });
- 
+
+let operator = document.querySelector(".operatorButtons");
+let displayInsidePanel = document.querySelector(".displayInsideContainer");
+let buttonsSecondValue = document.querySelector("#buttonContainerForSecondValue");
+operator.addEventListener("click", () =>{
+    let selectedOperator = event.target.textContent;
+    let displayForOperator = clickedValues.join("") + selectedOperator;
+    displayInsidePanel.textContent = displayForOperator;
+
+    clickedValues.splice(0, clickedValues.length);
+    buttonsSecondValue.forEach(button => {
+        button.addEventListener("click", () => {
+            clickedValues.push(event.target.textContent);
+            displayPanel.textContent = clickedValues.join("");
+        });
+    });
+});
+
