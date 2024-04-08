@@ -1,10 +1,5 @@
 //functions for math operations
 
-let firstNumber = 2;
-let SecondNumber = 4;
-let operator;
-
-
 //add
 function add(firstNumber, SecondNumber) {
     let additionResult = firstNumber + SecondNumber;
@@ -35,10 +30,14 @@ function operate(operator, firstNumber, SecondNumber) {
 }
 
 //display screen
-let buttons = document.querySelector(".buttonContainer");
-buttons.addEventListener("click", function displayScreen() {
-    let displayPanel = document.querySelector(".display");
-    let buttonValue = event.target.textContent;
-    displayPanel.textContent = buttonValue;
-});
+const clickedValues = [];
+let buttons = document.querySelectorAll(".buttonContainer");
+let displayPanel = document.querySelector(".display");
 
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        clickedValues.push(event.target.textContent);
+        displayPanel.textContent = clickedValues.join("");
+    });
+});
+ 
