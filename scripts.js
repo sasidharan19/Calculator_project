@@ -39,13 +39,23 @@ let equalTo = document.querySelector(".equalButton");
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
         let excludedElement = document.querySelector(".excludeMe")
-        console.log(excludedElement.textContent);
-        if(event.target !== excludedElement) {
-            clickedValues.push(event.target.textContent);
-            displayPanel.textContent = clickedValues.join("");
-        }
+    if(event.target !== excludedElement /*&& !isNaN(Number(event.target.textContent))*/) {
+            clickedValues.push(Number(event.target.textContent));
+        }    
+        displayPanel.textContent = clickedValues.join("");
+        calculateFirstNumber();
     });
+    
 });
+
+function calculateFirstNumber() {
+    if (clickedValues.length > 0) {
+        let numberString = clickedValues.join("");
+        let firstNumber = parseInt(numberString);
+        console.log(firstNumber); 
+    } 
+}
+
 
 //operator and second value
 let operator = document.querySelector(".operatorButtons");
@@ -70,5 +80,6 @@ operator.addEventListener("click", () =>{
 
     equalTo.addEventListener("click", () => {
         displayFirstPanel.textContent = displayForOperator + clickedValues.join("") + event.target.textContent;
+
     })
 });
