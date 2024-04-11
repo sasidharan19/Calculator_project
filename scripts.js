@@ -37,19 +37,31 @@ function operate(operator, firstNumber, SecondNumber) {
 //display screen
 let displayValue;
 let buttons = document.querySelector(".buttonContainer");
+let displayPanel = document.querySelector(".display");
 
 buttons.addEventListener("click", function displayScreen() {
-    let displayPanel = document.querySelector(".display");
-    let buttonValue = event.target.textContent;
-    displayValue = buttonValue;
-
-    buttons.addEventListener("click", function displayScreen() {
-        displayPanel = document.querySelector(".display");
-        buttonValueNew = event.target.textContent;
-        displayValue = buttonValue + buttonValueNew;
-        displayPanel.textContent = displayValue;
-    })
+    firstNumber = event.target.textContent;
+    displayValue = firstNumber;
+    displayPanel.textContent = displayValue;
 });
+
+let operands = document.querySelector("operands");
+operands.addEventListener("click", function displayScreen() {
+    let selectedOperand = event.target.textContent;
+    displayValue = firstNumber + selectedOperand;
+    displayPanel.textContent = displayValue;
+})
+
+buttons.addEventListener("click", function displayScreen() {
+    let SecondNumber = event.target.textContent;
+    displayValue = firstNumber + selectedOperand + SecondNumber;
+    displayPanel.textContent = displayValue;
+})
+
+function displayScreen() {
+    displayValue = 
+    displayPanel.textContent = displayValue;
+}
 
 
 
