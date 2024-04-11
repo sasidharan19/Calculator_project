@@ -8,9 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="display" id="displayPanel"> 
-            
-        </div>
+        <div class="displayFirstContainer"> </div>
+        <div class="display" id="displayPanel"> </div>
 
         <div class="cancelAndBackspace">
             <button class="clear"> C </button>
@@ -18,13 +17,15 @@
                 <img class = "backspace_img" src="./images/key.png" alt="backspace_img"> 
             </button>
         </div>
-        <div class="buttonContainer">
+        <div class="buttonContainer"> <!-- added this for testing of event delegation -->
         <div class="buttonsrow">
-            <button class="buttonStyle operands"> + </button>
-            <button class="buttonStyle operands"> - </button>
-            <button class="buttonStyle operands"> × </button>
-            <button class="buttonStyle operands"> ÷ </button>
+            <button class="buttonStyle"> + </button>
+            <button class="buttonStyle"> - </button>
+            <button class="buttonStyle"> × </button>
+            <button class="buttonStyle"> ÷ </button>
         </div>
+
+        <div class="buttonContainer id:buttonContainerForSecondValue">
 
         <div class="buttonsrow">
             <button class="buttonStyle"> 1 </button>
@@ -44,7 +45,7 @@
             <button class="buttonStyle"> 9 </button>
             <button class="buttonStyle"> 0 </button>
             <button class="buttonStyle"> . </button>
-            <button class="buttonStyle equalButton"> = </button>
+            <button class="buttonStyle equalButton excludeMe"> = </button>
         </div>
         </div>
     </div>
