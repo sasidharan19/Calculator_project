@@ -76,3 +76,7 @@ body {
     background-color: skyblue;
 }
 
+.zero {
+    flex: 0.57;
+}
+

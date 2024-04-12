@@ -38,7 +38,11 @@ function operate(operator, firstNumber, secondNumber) {
         displayPanel.textContent = multiply(firstNumber, secondNumber);
     }
     else if (operator === '÷') {
-        displayPanel.textContent = divide(firstNumber, secondNumber);
+        if (secondNumber === 0) {
+            alert("Oops dividing by 0 will be infinity!!")
+        } else {
+            displayPanel.textContent = divide(firstNumber, secondNumber);
+        }
     }
 }
 
@@ -54,7 +58,7 @@ buttons.forEach(button => {
     temporary = 1;
     button.addEventListener("click", (event) => {
         if (temporary === 1) {
-            let excludedElement = document.querySelector(".excludeMe")
+            let excludedElement = document.querySelector(".excludeMe");
             if(event.target !== excludedElement) {
                 clickedValues.push(Number(event.target.textContent));
                 displayPanel.textContent = clickedValues.join("");
@@ -67,7 +71,7 @@ buttons.forEach(button => {
                 if(event.target !== excludedElement) {
                     clickedValues.push(Number(event.target.textContent));
                     displayPanel.textContent = clickedValues.join("");
-                    calculateSecondNumber();        
+                    calculateSecondNumber();
                 }           
         }
     });
@@ -82,20 +86,32 @@ function calculateFirstNumber() {
     } 
 }
 
-
 //operator and second value
 let operator = document.querySelector(".operatorButtons");
 let displayFirstPanel = document.querySelector(".displayFirstContainer");
 let buttonsSecondValue = document.querySelectorAll("#buttonContainerForSecondValue");
 let displayForOperator;
 let selectedOperator;
+let operatorClickedTimes = 0;
 
 operator.addEventListener("click", () =>{
-    selectedOperator = event.target.textContent;
-    displayForOperator = clickedValues.join("") + selectedOperator;
-    displayFirstPanel.textContent = displayForOperator;
-    temporary = 2;
-    clickedValues.splice(0, clickedValues.length);
+    operatorClickedTimes++;
+    if(operatorClickedTimes === 1){
+        selectedOperator = event.target.textContent;
+        displayForOperator = displayPanel.textContent + selectedOperator;
+        displayFirstPanel.textContent = displayForOperator;
+        temporary = 2;
+        clickedValues.splice(0, clickedValues.length);
+    }
+
+    if(operatorClickedTimes > 1){
+        operate(selectedOperator, firstNumber, secondNumber);
+        selectedOperator = event.target.textContent;
+        displayForOperator = displayPanel.textContent + selectedOperator;
+        displayFirstPanel.textContent = displayPanel.textContent + selectedOperator;
+        firstNumber = displayPanel.textContent;
+        clickedValues.splice(0, clickedValues.length);
+    }
 });
 
 
@@ -103,7 +119,6 @@ function calculateSecondNumber() {
     if (clickedValues.length > 0) {
         let numberString = clickedValues.join("");
         secondNumber = parseInt(numberString);
-        console.log("secondnumber: " + secondNumber);
         return secondNumber;
     }
 }
@@ -113,3 +128,18 @@ equalTo.addEventListener("click", () => {
     operate(selectedOperator, firstNumber, secondNumber);
 })
 
+let clear = document.querySelector(".clear");
+clear.addEventListener("click", () => {
+    displayFirstPanel.textContent = "";
+    displayPanel.textContent = "";
+    clickedValues.splice(0, clickedValues.length);
+    firstNumber = 0;
+    secondNumber = 0;
+    temporary = 1;
+    operatorClickedTimes = 0;
+})
+
+let backspace = document.querySelector(".backspace_img");
+backspace.addEventListener("click", () => {
+    displayPanel.textContent = displayPanel.textContent.slice(0, -1);
+})
