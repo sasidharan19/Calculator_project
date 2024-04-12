@@ -9,19 +9,19 @@ function add(firstNumber, SecondNumber) {
 //subtract
 function subtract(firstNumber, SecondNumber) {
     let subtractResult = firstNumber - SecondNumber;
-    console.log(subtractResult);
+    return subtractResult;
 }
 
 //multiply
 function multiply(firstNumber, SecondNumber) {
     let multiplyResult = firstNumber * SecondNumber;
-    console.log(multiplyResult);
+    return multiplyResult;
 }
 
 //divide
 function divide(firstNumber, SecondNumber) {
     let divisionResult = firstNumber / SecondNumber;
-    console.log(divisionResult);
+    return divisionResult;
 }
 
 //operate
@@ -30,6 +30,15 @@ function operate(operator, firstNumber, secondNumber) {
 
     if (operator === '+') {
         displayPanel.textContent = add(firstNumber, secondNumber);
+    }
+    else if (operator === '-') {
+        displayPanel.textContent = subtract(firstNumber, secondNumber);
+    }
+    else if (operator === '×') {
+        displayPanel.textContent = multiply(firstNumber, secondNumber);
+    }
+    else if (operator === '÷') {
+        displayPanel.textContent = divide(firstNumber, secondNumber);
     }
 }
 
@@ -50,7 +59,6 @@ buttons.forEach(button => {
                 clickedValues.push(Number(event.target.textContent));
                 displayPanel.textContent = clickedValues.join("");
                 calculateFirstNumber();
-                console.log("first");
             }    
         }
 
@@ -59,8 +67,7 @@ buttons.forEach(button => {
                 if(event.target !== excludedElement) {
                     clickedValues.push(Number(event.target.textContent));
                     displayPanel.textContent = clickedValues.join("");
-                    calculateSecondNumber();
-                    console.log("second");          
+                    calculateSecondNumber();        
                 }           
         }
     });
@@ -72,7 +79,6 @@ function calculateFirstNumber() {
     if (clickedValues.length > 0) {
         let numberString = clickedValues.join("");
         firstNumber = parseInt(numberString);
-        console.log("firstnumber: " + firstNumber); 
     } 
 }
 
@@ -86,37 +92,10 @@ let selectedOperator;
 
 operator.addEventListener("click", () =>{
     selectedOperator = event.target.textContent;
-    console.log(selectedOperator);
     displayForOperator = clickedValues.join("") + selectedOperator;
     displayFirstPanel.textContent = displayForOperator;
     temporary = 2;
     clickedValues.splice(0, clickedValues.length);
-
-    console.log(typeof selectedOperator);
-
-    /* buttonsSecondValue.forEach(button => {
-        button.addEventListener("click", (event) => {
-            if (temporary === 2) {
-                let excludedElement = document.querySelector(".excludeMe")
-                if(event.target !== excludedElement) {
-                    clickedValues.push(Number(event.target.textContent));              
-                }
-                displayPanel.textContent = clickedValues.join("");
-                calculateSecondNumber();
-                console.log("second");
-            }
-        });
-
-    }); */
-
-
-    /*equalTo.addEventListener("click", () => {
-        displayFirstPanel.textContent = displayForOperator + clickedValues.join("") + event.target.textContent;
-        displayPanel.textContent = "abc";
-        console.log(displayPanel.textContent);
-        operate(selectedOperator, firstNumber, secondNumber);
-    }) */
-    
 });
 
 
